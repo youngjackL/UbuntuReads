@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-rasta-green: #078930;
+  --color-rasta-gold: #FCDD09;
+  --color-rasta-red: #DA121A;
+  --color-charcoal: #0a0a0a;
+  
+  --color-app-bg: #0a0a0a;
+  --color-app-surface: #141414;
+  --color-app-text: #ffffff;
+  --color-app-text-dim: #71717a;
+  
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  :root {
+    --app-bg: #ffffff;
+    --app-surface: #f4f4f5;
+    --app-text: #09090b;
+    --app-text-dim: #52525b;
+  }
+
+  :root.dark {
+    --app-bg: #0a0a0a;
+    --app-surface: #141414;
+    --app-text: #ffffff;
+    --app-text-dim: #71717a;
+  }
+
+  body {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    @apply antialiased selection:bg-rasta-gold/30 selection:text-white transition-colors duration-300;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+/* Custom Grids */
+.manga-grid-trending {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+}
+
+.manga-grid-trending::-webkit-scrollbar {
+  display: none;
+}
+
+.manga-grid-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .manga-grid-main {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Vertical Reader scrollbar */
+.reader-container {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.reader-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.reader-container::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full;
+}
